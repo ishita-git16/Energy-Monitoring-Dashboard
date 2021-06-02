@@ -36,7 +36,7 @@ const MatricsList = (props) =>
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [details, setDetails] = useState([]);
   const [data, setData] = useState([]);
-  const [item, setItemdata] = useState();
+  const [item, setItemdata] = useState({});
   const toggleDetails = (index) => {
     const position = details.indexOf(index)
     let newDetails = details.slice()
@@ -71,12 +71,13 @@ const MatricsList = (props) =>
   const handleSubmit = (event) => {
      if (event) event.preventDefault();
      setIsSubmitting(true);
-     const unique_tag = item.unique_tag;
+     const utag = data[event.target.id];
+     const unique_tag=utag.unique_tag;
       console.log(unique_tag);
       axios({
       method: 'PUT',
       url: SERVER_URL + `/modbus/metrics?device_code=${device_code}&unique_tag=${unique_tag}`,
-      data: data[event.target.id]
+      data: utag
 })
       .then(function (response) {
         enqueueSnackbar("Success", {
@@ -232,10 +233,8 @@ const MatricsList = (props) =>
                           <CLabel>Friendly Name:</CLabel>
                         </CCol>
                         <CCol xs="8" md="3">
-                          <CInput id={index} name="friendly_name" value={item.friendly_name} onChange={onChangeHandler}  required/><CLabel>Minutes</CLabel>
-                          <CInput id={index} name="unique_tag" value={item.unique_tag} onChange={onChangeHandler} /><CLabel>Minutes</CLabel>
-
-                        </CCol>
+                          <CInput id={index} name="friendly_name" value={item.friendly_name} onChange={onChangeHandler}  required/>
+                          </CCol>
                       </CFormGroup>
                       <CButton id={index} type="submit" size="sm" color="primary"><CIcon name="cil-scrubber" /> Submit</CButton>
                     </CForm>
