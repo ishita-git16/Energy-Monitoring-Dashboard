@@ -1,108 +1,156 @@
-import React from 'react'
-import {
-  CButton,
-  CCard,
-  CCardBody,
-  CCardGroup,
-  CCol,
-  CContainer,
-  CForm,
-  CInput,
-  CInputGroup,
-  CInputGroupPrepend,
-  CInputGroupText,
-  CRow
-} from '@coreui/react'
-import CIcon from '@coreui/icons-react';
-import useForm from '../../../Validation/useForm';
-import validate from '../../../Validation/LoginValidation';
-import useAppContext from '../../../AuthProviders/contextLib';
-import {useMutation} from 'react-query';
+import React, { useState } from 'react'
+import Link from '@material-ui/core/Link';
+import Paper from '@material-ui/core/Paper';
+import Box from '@material-ui/core/Box';
+import Grid from '@material-ui/core/Grid';
+import { makeStyles } from '@material-ui/core/styles';
+import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
+import Typography from '@material-ui/core/Typography';
+import Avatar from '@material-ui/core/Avatar';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import axios from 'axios';
+import { useSnackbar } from 'notistack';
+import VisibilityIcon from '@material-ui/icons/Visibility';
+import VisibilityOffIcon from '@material-ui/icons/VisibilityOff';
+import { InputAdornment } from '@material-ui/core';
 
-const Login = () => 
-{
-    const {
-    values,
-    errors,
-    handleChange,
-    handleSubmit,
-  } = useForm(login, validate);
-
-
-  // const [mutatePostTodo] = useMutation(
-  //   text => axios.post('/api/data', { text }),
-  //   {
-  //     onSuccess: () => {
-  //       // Query Invalidations
-  //       // queryCache.invalidateQueries('todos')
-  //       setText('')
-  //     },
-  //   }
-  // )
-
-  const mutation = useMutation(formData => {
-    return fetch('/api', formData)
-  })
-  const onSubmit = event => {
-    event.preventDefault()
-    mutation.mutate(new FormData(event.target))
-  }
-
-
-  function login() {
-    console.log('No errors, submit callback called!');
-  }
-  const divStyle = {
-    color: 'red',
-    
-  };
-
+function Copyright() {
   return (
-    <div className="c-app c-default-layout flex-row align-items-center">
-      <CContainer>
-        <CRow className="justify-content-center">
-          <CCol md="8">
-            <CCardGroup>
-              <CCard className="p-4">
-                <CCardBody>
-                  <CForm onSubmit={handleSubmit} noValidate>
-                    <h1>Login</h1>
-                    <p className="text-muted">Sign In to your account</p>
-                    <CInputGroup className="mb-3">
-                      <CInputGroupPrepend>
-                        <CInputGroupText>
-                          <CIcon name="cil-user" />
-                        </CInputGroupText>
-                      </CInputGroupPrepend>
-                      <CInput type="text"  className={`input ${errors.username && 'is-danger'}`} name="username" onChange={handleChange} value={values.username || ''} required />
-                      {errors.username && (
-                    <p  style={divStyle} className="help is-danger">{errors.username}</p>
-                  )}
-                    </CInputGroup>
-                    <CInputGroup className="mb-4">
-                      <CInputGroupPrepend>
-                        <CInputGroupText>
-                          <CIcon name="cil-lock-locked" />
-                        </CInputGroupText>
-                      </CInputGroupPrepend>
-                      <CInput className={`input ${errors.password && 'is-danger'}`} type="password" name="password" onChange={handleChange} value={values.password || ''} required  />
-                      {errors.password && (
-                  <p  style={divStyle} className="help is-danger">{errors.password}</p>
-                )}
-                    </CInputGroup>
-                    <CRow>
-                      <CCol xs="6">
-                        <CButton type="submit" color="primary" className="px-4">Login</CButton>
-                      </CCol>
-                      </CRow>
-                  </CForm>
-                </CCardBody>
-              </CCard>
-            </CCardGroup>
-          </CCol>
-        </CRow>
-      </CContainer>
-    </div>
+    <Typography variant="body2" color="textSecondary" align="center">
+      {'Copyright © '}
+      <Link color="inherit" target="_blank" href="https://smartiam.in/">
+        Integrated Active Monitering
+      </Link>{' '}
+      {new Date().getFullYear()}
+      {'.'}
+    </Typography>
+  );
+}
+const useStyles = makeStyles((theme) => ({
+  root: {
+    height: '100vh',
+  },
+  image: {
+    backgroundImage: 'url(energy-saving.jpg)',
+    backgroundRepeat: 'no-repeat',
+    backgroundColor:
+      theme.palette.type === 'light' ? theme.palette.grey[50] : theme.palette.grey[900],
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+  },
+  paper: {
+    margin: theme.spacing(8, 4),
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+  },
+  avatar: {
+    margin: theme.spacing(1),
+    backgroundColor: theme.palette.secondary.main,
+  },
+  form: {
+    width: '100%', // Fix IE 11 issue.
+    marginTop: theme.spacing(1),
+  },
+  submit: {
+    margin: theme.spacing(3, 0, 2),
+  },
+  logo: {
+    maxWidth: 160,
+  },
+}));
+const Login = () => {
+  const classes = useStyles();
+  const [email, setEmail] = useState();
+  const [password, setPassword] = useState();
+  const [hidePassword, setHidePassWord] = useState(true);
+  const { enqueueSnackbar } = useSnackbar();
+
+  const handleSubmit = e => {
+    e.preventDefault();
+    const loginDetails = {
+      email: email,
+      password: password,
+    }
+    axios.post("https://reqres.in/api/login", loginDetails)
+      .then(response => {
+        localStorage.setItem('JWTtoken', response.data.token);
+        window.location.href = "/";
+      })
+      .catch(error => {
+        enqueueSnackbar("error", {
+          variant: 'error'
+        })
+      })
+    console.log(loginDetails);
+  }
+  return (
+    <Grid container component="main" className={classes.root}>
+      <CssBaseline />
+      <Grid item xs={false} sm={4} md={7} className={classes.image} />
+      <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
+        <div className={classes.paper}>
+          <div>
+            <img src="logo.png" className={classes.logo} />
+          </div><br />
+          <br />
+          <Avatar className={classes.avatar} />
+          <Typography component="h1" variant="h5">
+            Login
+      </Typography>
+          <form className={classes.form} onSubmit={handleSubmit}>
+            <TextField
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              id="email"
+              label="email"
+              name="email"
+              onChange={(e) => { setEmail(e.target.value) }}
+              autoComplete="email"
+              autoFocus
+            />
+            <TextField
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              name="password"
+              label="Password"
+              type={hidePassword ? "password" : "text"}
+              id="password"
+              onChange={(e) => { setPassword(e.target.value) }}
+              autoComplete="current-password"
+              InputProps={{
+                endAdornment: (
+                  <InputAdornment position="end">
+                    {
+                      hidePassword ?
+                        <VisibilityOffIcon className={classes.showPassword} onClick={() => { setHidePassWord(false) }} /> :
+                        <VisibilityIcon className={classes.showPassword} onClick={() => { setHidePassWord(true) }} />
+                    }
+                  </InputAdornment>
+                ),
+              }}
+            />
+            <Button
+              type="submit"
+              fullWidth
+              variant="contained"
+              color="primary"
+              className={classes.submit}
+            >
+              Login
+        </Button>
+            <Box mt={5}>
+              <Copyright />
+            </Box>
+          </form>
+        </div>
+      </Grid>
+    </Grid>
   )
 }
 export default Login
