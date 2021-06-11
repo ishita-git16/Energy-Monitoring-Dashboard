@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import {
-CButton, CModal, CModalBody, CSelect, CModalHeader,
-CModalTitle, CForm, CCol, CLabel, CFormGroup, CInput
+    CButton, CModal, CModalBody, CSelect, CModalHeader,
+    CModalTitle, CForm, CCol, CLabel, CFormGroup, CInput
 }
     from '@coreui/react';
 import axios from 'axios';
@@ -38,7 +38,7 @@ const AddModubsDevice = (props) => {
             }
         }
         setChanelList((tempdatas[i].channel_no).split(","));
-      };
+    };
 
     const onChangeHandler = (e) => {
         e.persist()
@@ -96,7 +96,6 @@ const AddModubsDevice = (props) => {
                                     className="form-control"
                                     name="template_name"
                                     onChange={(event) => { handleTemplateChange(event) }}
-
                                 >
                                     {tempdatas.map((post, i) =>
                                         <option key={i}>{post.template_name}</option>)}
@@ -145,8 +144,7 @@ const AddModubsDevice = (props) => {
                         <CButton
                             color="secondary"
                             onClick={() => setModal(false)}
-                        //onClick={notify}
-                        >Cancel</CButton>
+                         >Cancel</CButton>
                     </CForm>
                 </CModalBody>
             </CModal>

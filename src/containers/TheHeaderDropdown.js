@@ -1,6 +1,5 @@
 import React from 'react'
 import {
-  CBadge,
   CDropdown,
   CDropdownItem,
   CDropdownMenu,
@@ -21,13 +20,12 @@ const TheHeaderDropdown = () => {
           <CImg
             src={'iam1.png'}
             className="c-avatar-img"
-            alt="admin@bootstrapmaster.com"
+            
           />
         </div>
       </CDropdownToggle>
       <CDropdownMenu className="pt-0" placement="bottom-end">
-
-        <CDropdownItem
+      <CDropdownItem
           header
           tag="div"
           color="light"
@@ -42,8 +40,7 @@ const TheHeaderDropdown = () => {
           <CIcon name="cil-settings" className="mfe-2" />
           Settings
         </CDropdownItem>
-
-        <CDropdownItem divider />
+      <CDropdownItem divider />
         <CDropdownItem>
           <Link to="/logout">
             <CIcon name="cil-lock-locked" className="mfe-2" />

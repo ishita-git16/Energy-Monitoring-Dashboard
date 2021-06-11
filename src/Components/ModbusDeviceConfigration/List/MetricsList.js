@@ -28,8 +28,7 @@ const fields = ['friendly_name', 'unit', 'unique_tag', 'register_address', 'metr
 ];
 const SERVER_URL = process.env.REACT_APP_SERVER_URL;
 
-const MatricsList = (props) => 
-{
+const MatricsList = (props) => {
   let history = useHistory();
   const { enqueueSnackbar } = useSnackbar();
   const { device_code } = useParams();
@@ -69,16 +68,16 @@ const MatricsList = (props) =>
     //console.log(abc);
   }
   const handleSubmit = (event) => {
-     if (event) event.preventDefault();
-     setIsSubmitting(true);
-     const utag = data[event.target.id];
-     const unique_tag=utag.unique_tag;
-      console.log(unique_tag);
-      axios({
+    if (event) event.preventDefault();
+    setIsSubmitting(true);
+    const utag = data[event.target.id];
+    const unique_tag = utag.unique_tag;
+    console.log(unique_tag);
+    axios({
       method: 'PUT',
       url: SERVER_URL + `/modbus/metrics?device_code=${device_code}&unique_tag=${unique_tag}`,
       data: utag
-})
+    })
       .then(function (response) {
         enqueueSnackbar("Success", {
           variant: 'success'
@@ -87,13 +86,13 @@ const MatricsList = (props) =>
       })
       .catch(function (error) {
         console.log(error);
-        enqueueSnackbar("Error"+`${error.message}`, {
+        enqueueSnackbar("Error" + `${error.message}`, {
           variant: 'error'
         })
       });
 
   };
- return (
+  return (
     <CContainer fluid>
       <CDataTable
         items={data}
@@ -233,8 +232,8 @@ const MatricsList = (props) =>
                           <CLabel>Friendly Name:</CLabel>
                         </CCol>
                         <CCol xs="8" md="3">
-                          <CInput id={index} name="friendly_name" value={item.friendly_name} onChange={onChangeHandler}  required/>
-                          </CCol>
+                          <CInput id={index} name="friendly_name" value={item.friendly_name} onChange={onChangeHandler} required />
+                        </CCol>
                       </CFormGroup>
                       <CButton id={index} type="submit" size="sm" color="primary"><CIcon name="cil-scrubber" /> Submit</CButton>
                     </CForm>
@@ -261,6 +260,5 @@ const MatricsList = (props) =>
         }} />
     </CContainer>
   )
-
 }
 export default MatricsList;
