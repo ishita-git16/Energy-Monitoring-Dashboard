@@ -5,36 +5,29 @@ import './polyfill';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
-import * as serviceWorker from './serviceWorker';
 import { icons } from './assets/icons'
 import { Provider } from 'react-redux'
-import store from './store'
-import { QueryClient, QueryClientProvider, useQuery } from 'react-query'
+import { createStore } from 'redux';
 import { SnackbarProvider } from 'notistack';
+import authReducer from './Reducers/AuthReducer'
 
-const queryClient = new QueryClient()
-
+const store = createStore(
+  authReducer,
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+)
 React.icons = icons
-
 ReactDOM.render(
   <Provider store={store}>
-    <QueryClientProvider client={queryClient}>
-      <SnackbarProvider
-        maxSnack={2}
-        anchorOrigin={{
-          vertical: 'top',
-          horizontal: 'center',
-        }}
-        autoHideDuration={3000}
-      >
-        <App/>
-      </SnackbarProvider>
-    </QueryClientProvider>
+    <SnackbarProvider
+      maxSnack={2}
+      anchorOrigin={{
+        vertical: 'top',
+        horizontal: 'center',
+      }}
+      autoHideDuration={3000}
+    >
+      <App />
+    </SnackbarProvider>
   </Provider>,
   document.getElementById('root')
 );
-
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: http://bit.ly/CRA-PWA
-serviceWorker.unregister();
