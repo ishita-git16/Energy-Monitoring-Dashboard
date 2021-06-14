@@ -9,11 +9,8 @@ import {
   CSidebarNavTitle,
   CSidebarMinimizer,
   CSidebarNavDropdown,
-  CSidebarNavItem,CImg
+  CSidebarNavItem,
 } from '@coreui/react'
-
-import CIcon from '@coreui/icons-react'
-
 // sidebar nav config
 import navigation from './_nav'
 
@@ -24,7 +21,7 @@ const TheSidebar = () => {
   return (
     <CSidebar
       show={show}
-      onShowChange={(val) => dispatch({type: 'set', sidebarShow: val })}
+      onShowChange={(val) => dispatch({ type: 'set', sidebarShow: val })}
     >
       {/* to="/" */}
       <CSidebarBrand className="d-md-down-none" >
@@ -56,9 +53,8 @@ const TheSidebar = () => {
           }}
         />
       </CSidebarNav>
-      <CSidebarMinimizer className="c-d-md-down-none"/>
+      <CSidebarMinimizer className="c-d-md-down-none" />
     </CSidebar>
   )
 }
-
 export default React.memo(TheSidebar)

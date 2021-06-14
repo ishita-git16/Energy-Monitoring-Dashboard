@@ -12,6 +12,7 @@ const loading = (
   </div>
 )
 const TheContent = () => {
+  const isAuth = true
   return (
     <main className="c-main">
       <CContainer fluid>
@@ -19,15 +20,17 @@ const TheContent = () => {
           <Switch>
             {routes.map((route, idx) => {
               return route.component && (
-                <Route
+                 <Route
                   key={idx}
                   path={route.path}
                   exact={route.exact}
                   name={route.name}
                   render={props => (
-                    <CFade>
-                      <route.component {...props} />
-                    </CFade>
+                    isAuth == true ?
+                      <CFade>
+                        <route.component {...props} />
+                      </CFade>
+                      : <Redirect to="/login" />
                   )} />
               )
             })}
