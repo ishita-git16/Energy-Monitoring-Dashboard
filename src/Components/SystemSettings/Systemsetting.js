@@ -164,7 +164,8 @@ const Systemsetting = (props) =>
                             {/* <CFormText>This is a help text</CFormText> */}
                           </CCol>
                         </CFormGroup>
-                        <CButton type="submit" size="sm" color="primary"><CIcon name="cil-scrubber" /> Apply</CButton>  <CButton type="reset" size="sm" color="danger"><CIcon name="cil-ban" /> Test</CButton>
+                        <CButton type="submit" size="sm" color="primary"><CIcon name="cil-scrubber" /> Apply</CButton> 
+                         {/* <CButton type="reset" size="sm" color="danger"><CIcon name="cil-ban" /> Test</CButton> */}
                       </CForm>
                     </CCardBody>
                   </CTabPane>

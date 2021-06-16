@@ -20,13 +20,13 @@ const _nav = [
     _tag: 'CSidebarNavItem',
     name: 'System Settings',
     to: '/systemsettings',
-    icon: 'cil-settings',
+    icon: 'cilLaptop',
   },
   {
     _tag: 'CSidebarNavItem',
     name: 'Modbus Device Configration',
     to: '/modbus/list',
-    icon: 'cil-settings',
+    icon: 'cilApplicationsSettings',
   },
   {
     _tag: 'CSidebarNavItem',
@@ -39,13 +39,13 @@ const _nav = [
     _tag: 'CSidebarNavItem',
     name: 'Schedule',
     to: '/schedulelist/list',
-    icon: 'cil-bell',
+    icon: 'cilCalendar',
   },
   {
     _tag: 'CSidebarNavItem',
     name: 'Zone',
     to: '/zone/list',
-    icon: 'cil-settings',
+    icon: 'cilMap',
   },
 
   {

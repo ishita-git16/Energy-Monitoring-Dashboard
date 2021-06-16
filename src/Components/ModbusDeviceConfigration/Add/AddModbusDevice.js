@@ -83,7 +83,7 @@ const AddModubsDevice = (props) => {
             <CButton type="submit" onClick={() => setModal(!modal)} color="info">Add Modbus Device</CButton>
             <CModal show={modal} onClose={setModal}>
                 <CModalHeader closeButton>
-                    <CModalTitle>Modal title</CModalTitle>
+                    <CModalTitle>Add</CModalTitle>
                 </CModalHeader>
                 <CModalBody>
                     <CForm onSubmit={handleSubmit} className="form-horizontal">
@@ -97,6 +97,7 @@ const AddModubsDevice = (props) => {
                                     name="template_name"
                                     onChange={(event) => { handleTemplateChange(event) }}
                                 >
+                                    <option value="starter" >Please Select Template Name</option>
                                     {tempdatas.map((post, i) =>
                                         <option key={i}>{post.template_name}</option>)}
                                 </CSelect>
@@ -111,7 +112,9 @@ const AddModubsDevice = (props) => {
                                     className="form-control"
                                     name="channel_no"
                                     onChange={onChangeHandler}  >
+                                        <option >Please Select channel No</option>
                                     {channelList.map((index, i) =>
+                                    
                                         <option key={i}>{index}</option>)}
                                 </CSelect>
                             </CCol>
