@@ -17,7 +17,7 @@ import axios from 'axios';
 import { useParams } from "react-router-dom";
 import MatricsList from '../List/MetricsList';
 import { useSnackbar } from 'notistack';
-import validator from 'validator';
+//import validator from 'validator';
 
 
 const SERVER_URL = process.env.REACT_APP_SERVER_URL;

@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, {useState } from 'react';
 import {
     CButton, CModal, CModalBody, CSelect, CModalHeader,
-    CModalTitle, CForm, CCol, CLabel, CFormGroup, CInput,CMultiSelect
+    CModalTitle, CForm, CCol, CLabel, CFormGroup, CInput,
 }
     from '@coreui/react';
 import axios from 'axios';

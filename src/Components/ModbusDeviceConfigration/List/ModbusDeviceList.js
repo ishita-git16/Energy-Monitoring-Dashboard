@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import {CDataTable,CContainer,CButton,CBadge} from '@coreui/react';
+import {CDataTable,CContainer,CButton} from '@coreui/react';
 import axios from 'axios';
-//import { useHistory } from 'react-router-dom';
 import AllModubsDeviceExport from '../../../Exporter/ModbusDevice/AllModbusDeviceExport';
 import AddModubsDevice from '../../ModbusDeviceConfigration/Add/AddModbusDevice';
 
@@ -23,10 +22,6 @@ const fields = ['channel_no', 'brand', 'model', 'protocol_version', 'communicati
     filter: false
   }
 ];
-// const metricsdata=(metrics)=>
-// {
-//   return item.metrics.length;
-// }
 const SERVER_URL = process.env.REACT_APP_SERVER_URL;
 const ModbusdeviceList = (props) => {
   // let history = useHistory();

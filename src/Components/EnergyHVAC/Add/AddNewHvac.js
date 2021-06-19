@@ -9,7 +9,7 @@ import { useSnackbar } from 'notistack';
 
 const SERVER_URL = process.env.REACT_APP_SERVER_URL;
 
-const AddZone = (props) => {
+const AddNewHvac = (props) => {
     const [modal, setModal] = useState(false)
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [tempdatas, setTempdata] = useState([]);
@@ -80,16 +80,32 @@ const AddZone = (props) => {
     };
     return (
         <>
-            <CButton type="submit" onClick={() => setModal(!modal)} color="info">Add Zone</CButton>
+            <CButton type="submit" onClick={() => setModal(!modal)} color="info">Add Energyhvac</CButton>
             <CModal show={modal} onClose={setModal}>
                 <CModalHeader closeButton>
                     <CModalTitle>Modal title</CModalTitle>
                 </CModalHeader>
                 <CModalBody>
                     <CForm onSubmit={handleSubmit} className="form-horizontal">
-                       <CFormGroup row>
+                        <CFormGroup row>
                             <CCol md="3">
-                                <CLabel htmlFor="text-input">Name</CLabel>
+                                <CLabel htmlFor="text-input">HVAC Category</CLabel>
+                            </CCol>
+                            <CCol xs="12" md="9">
+                                <CSelect
+                                    className="form-control"
+                                    name="template_name"
+                                    onChange={(event) => { handleTemplateChange(event) }}
+                                >
+                                    <option value="starter" >Please Select Template Name</option>
+                                    {tempdatas.map((post, i) =>
+                                        <option key={i}>{post.template_name}</option>)}
+                                </CSelect>
+                            </CCol>
+                        </CFormGroup>
+                        <CFormGroup row>
+                            <CCol md="3">
+                                <CLabel htmlFor="text-input">HVAC Manufacturer</CLabel>
                             </CCol>
                             <CCol xs="12" md="9">
                                 <CInput id="text-input" name="slave_id" onChange={onChangeHandler} />
@@ -97,7 +113,7 @@ const AddZone = (props) => {
                         </CFormGroup>
                         <CFormGroup row>
                             <CCol md="3">
-                                <CLabel htmlFor="text-input">Description</CLabel>
+                                <CLabel htmlFor="text-input">HVAC Model</CLabel>
                             </CCol>
                             <CCol xs="12" md="9">
                                 <CInput id="text-input" name="modbus_port" onChange={onChangeHandler} />
@@ -105,7 +121,23 @@ const AddZone = (props) => {
                         </CFormGroup>
                         <CFormGroup row>
                             <CCol md="3">
-                                <CLabel htmlFor="text-input">HVAC MQTT Device IDs</CLabel>
+                                <CLabel htmlFor="text-input">HVAC Tonnage (Tons)</CLabel>
+                            </CCol>
+                            <CCol xs="12" md="9">
+                                <CInput id="text-input" name="device_code" onChange={onChangeHandler} />
+                            </CCol>
+                        </CFormGroup>
+                        <CFormGroup row>
+                            <CCol md="3">
+                                <CLabel htmlFor="text-input">No of Compressors</CLabel>
+                            </CCol>
+                            <CCol xs="12" md="9">
+                                <CInput id="text-input" name="device_code" onChange={onChangeHandler} />
+                            </CCol>
+                        </CFormGroup>
+                        <CFormGroup row>
+                            <CCol md="3">
+                                <CLabel htmlFor="text-input">Remark</CLabel>
                             </CCol>
                             <CCol xs="12" md="9">
                                 <CInput id="text-input" name="device_code" onChange={onChangeHandler} />
@@ -122,4 +154,4 @@ const AddZone = (props) => {
         </>
     )
 }
-export default AddZone;
+export default AddNewHvac;

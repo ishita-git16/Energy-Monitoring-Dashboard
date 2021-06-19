@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { CDataTable, CContainer, CButton } from '@coreui/react';
 import axios from 'axios';
-import { Button } from '@material-ui/core';
 import AddSchedule from '../Add/AddSchedule';
 
 const SERVER_URL = process.env.REACT_APP_SERVER_URL;

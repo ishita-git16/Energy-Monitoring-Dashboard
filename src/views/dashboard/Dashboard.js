@@ -1,38 +1,24 @@
-import React, { lazy ,Suspense} from 'react'
+import React, { lazy, Suspense } from 'react'
 import {
-  CBadge,
-  CButton,
-  CButtonGroup,
-  CCard,
-  CCardBody,
-  CCardFooter,
-  CCardHeader,
   CCol,
-  CProgress,
   CRow,
-  CCallout,CContainer
+  CContainer
 } from '@coreui/react'
-import CIcon from '@coreui/icons-react'
-
-import MainChartExample from '../charts/MainChartExample.js'
 
 const WidgetsDropdown = lazy(() => import('../widgets/WidgetsDropdown.js'))
-const WidgetsBrand = lazy(() => import('../widgets/WidgetsBrand.js'))
-
 const loading = (
   <div className="pt-3 text-center">
     <div className="sk-spinner sk-spinner-pulse"></div>
   </div>
 )
-
-const Dashboard = ({match}) => {
+const Dashboard = ({ match }) => {
   return (
     <>
-    <main className="c-main">
-    <CContainer fluid>
-    <Suspense fallback={loading}>
-      <WidgetsDropdown />
-      {/* <CCard>
+      <main className="c-main">
+        <CContainer fluid>
+          <Suspense fallback={loading}>
+            <WidgetsDropdown />
+            {/* <CCard>
         <CCardBody>
           <CRow>
             <CCol sm="5">
@@ -116,11 +102,11 @@ const Dashboard = ({match}) => {
         </CCardFooter>
       </CCard> */}
 
-      {/* <WidgetsBrand withCharts/> */}
+            {/* <WidgetsBrand withCharts/> */}
 
-      <CRow>
-        <CCol>
-          {/* <CCard>
+            <CRow>
+              <CCol>
+                {/* <CCard>
             <CCardHeader>
               Traffic {' & '} Sales
             </CCardHeader>
@@ -554,16 +540,14 @@ const Dashboard = ({match}) => {
                   </tr>
                 </tbody>
               </table>
-
-            </CCardBody>
+        </CCardBody>
           </CCard> */}
-        </CCol>
-      </CRow>
-      </Suspense>
-      </CContainer>
+              </CCol>
+            </CRow>
+          </Suspense>
+        </CContainer>
       </main>
     </>
   )
 }
-
 export default Dashboard

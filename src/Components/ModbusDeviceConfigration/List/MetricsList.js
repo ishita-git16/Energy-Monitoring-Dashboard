@@ -4,7 +4,7 @@ import {
   CContainer,
   CButton, CSwitch,
   CCollapse, CCardBody,
-  CCol, CFormGroup, CLabel, CInput, CForm, CAlert,
+  CCol, CFormGroup, CLabel, CInput, CForm,
 } from '@coreui/react'
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
