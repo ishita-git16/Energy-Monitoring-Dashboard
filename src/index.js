@@ -10,11 +10,13 @@ import { Provider } from 'react-redux'
 import { createStore } from 'redux';
 import { SnackbarProvider } from 'notistack';
 import authReducer from './Reducers/AuthReducer'
-import store from './store';
-// const store = createStore(
-//   authReducer,
-//   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-// )
+//import store from './store';
+import axios from 'axios';
+const store = createStore(
+  authReducer,
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+)
+axios.defaults.baseURL= 'http://localhost:5001'
 React.icons = icons
 ReactDOM.render(
   <Provider store={store}>

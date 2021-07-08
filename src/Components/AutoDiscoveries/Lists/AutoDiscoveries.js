@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { CDataTable, CContainer, CButton } from '@coreui/react';
 import axios from 'axios';
-const SERVER_URL = process.env.REACT_APP_SERVER_URL;
 const fields = ['mqtt_id', 'Device Id', 'Device Type', 'Friendly Name', 'ip', 'status', {
     key: 'Delete',
     label: 'Action',
@@ -15,7 +14,7 @@ const AutoDiscoveries = () => {
     useEffect(() => {
         axios({
             method: 'GET',
-            url: SERVER_URL + `/modbus/device`,
+            url:  `/modbus/device`,
         }).then(res => {
             setData(res.data)
         })

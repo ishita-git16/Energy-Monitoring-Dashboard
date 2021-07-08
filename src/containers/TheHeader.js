@@ -37,7 +37,7 @@ const TheHeader = () => {
       <CHeaderNav className="d-md-down-none mr-auto">
         <div className="c-avatar">
           <CImg
-            src={'iam1.png'}
+            src={'http://api.smart-iam.com/api/image-store/get-object/test/logo192.png'}
             className="c-avatar-img" />
         </div>
       </CHeaderNav>
