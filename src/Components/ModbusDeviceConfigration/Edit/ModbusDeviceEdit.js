@@ -105,7 +105,7 @@ const ModbusDeviceEdit = (props) => {
         //response.setMdata()
         if (response.status === 200) {
         }
-        enqueueSnackbar("Success", {
+        enqueueSnackbar("Data updated successfully", {
           variant: "success",
         });
       })

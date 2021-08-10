@@ -68,13 +68,13 @@ const Systemsetting = (props) => {
     })
       .then(function (response) {
         //response.setdata();
-        enqueueSnackbar("Success", {
+        enqueueSnackbar("Data updated successfully", {
           variant: "success",
         });
       })
       .catch(function (error) {
         console.log(error);
-        enqueueSnackbar("Error", {
+        enqueueSnackbar("Error" +`${error.response.data.detail}`, {
           variant: "error",
         });
       });
@@ -111,7 +111,7 @@ const Systemsetting = (props) => {
                           </CCol>
                           <CCol sm="9">
                             <CSwitch
-                              name="dhcp_enable"
+                             name="dhcp_enable"
                               onChange={(event) => {
                                 handleSwitchChange(event);
                               }}

@@ -1,6 +1,7 @@
 import React from 'react';
 import './App.css';
 import './scss/style.scss';
+import Button from './Components/Button';
 import {
   Switch,
   Route,
@@ -16,6 +17,7 @@ const loading = (
 const Login = React.lazy(() => import('./Components/Login/Login'));
 function App() {
   return (
+    <>
     <Router>
       <React.Suspense fallback={loading}>
         <Switch>
@@ -24,6 +26,8 @@ function App() {
         </Switch>
       </React.Suspense>
     </Router>
+    <Button>Hello Mayuri </Button>
+    </>
   );
 }
 export default App;

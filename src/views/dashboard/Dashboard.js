@@ -4,6 +4,12 @@ import {
   CRow,
   CContainer
 } from '@coreui/react'
+import Button from '../../Components/Button/Button';
+import Calendar1 from '../../Components/Calendar/Calendar';
+import HeatMapCalendar from '../../Components/Calendar/HeatMapCalendar';
+import Charts from '../../Components/Charts/Charts';
+
+
 
 const WidgetsDropdown = lazy(() => import('../widgets/WidgetsDropdown.js'))
 const loading = (
@@ -18,6 +24,11 @@ const Dashboard = ({ match }) => {
         <CContainer fluid>
           <Suspense fallback={loading}>
             <WidgetsDropdown />
+            <Button></Button>
+            <Calendar1/>
+            <Charts/>
+            {/* <HeatMapCalendar/> */}
+
             {/* <CCard>
         <CCardBody>
           <CRow>
